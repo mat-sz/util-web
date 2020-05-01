@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-export const UuidGenerator: React.FC = () => {
+export const Uuid: React.FC = () => {
   const [generated, setGenerated] = useState(uuid());
   const [copied, setCopied] = useState(false);
 

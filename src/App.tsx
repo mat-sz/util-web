@@ -5,7 +5,7 @@ import './App.scss';
 
 import { Router } from './config';
 import { Home } from './screens/Home';
-import { UuidGenerator } from './screens/UuidGenerator';
+import { Uuid } from './screens/Uuid';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         </div>
         <Switch>
           <Route path="/uuid">
-            <UuidGenerator />
+            <Uuid />
           </Route>
           <Route path="/">
             <Home />
