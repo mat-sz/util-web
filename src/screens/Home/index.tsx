@@ -10,6 +10,10 @@ export const Home: React.FC = () => {
         <h2>UUID Generator</h2>
         <span>Generate an UUIDv4.</span>
       </Link>
+      <Link to="/base64">
+        <h2>Base64</h2>
+        <span>Decode/encode base64.</span>
+      </Link>
     </section>
   );
 };

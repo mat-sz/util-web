@@ -6,6 +6,7 @@ import './App.scss';
 import { Router } from './config';
 import { Home } from './screens/Home';
 import { Uuid } from './screens/Uuid';
+import { Base64 } from './screens/Base64';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
         <Switch>
           <Route path="/uuid">
             <Uuid />
+          </Route>
+          <Route path="/base64">
+            <Base64 />
           </Route>
           <Route path="/">
             <Home />
