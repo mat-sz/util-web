@@ -14,6 +14,10 @@ export const Home: React.FC = () => {
         <h2>Base64</h2>
         <span>Decode/encode base64.</span>
       </Link>
+      <Link to="/hash">
+        <h2>Hash</h2>
+        <span>MD5/SHA</span>
+      </Link>
     </section>
   );
 };

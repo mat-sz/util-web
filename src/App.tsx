@@ -7,6 +7,7 @@ import { Router } from './config';
 import { Home } from './screens/Home';
 import { Uuid } from './screens/Uuid';
 import { Base64 } from './screens/Base64';
+import { Hash } from './screens/Hash';
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/base64">
             <Base64 />
+          </Route>
+          <Route path="/hash">
+            <Hash />
           </Route>
           <Route path="/">
             <Home />
