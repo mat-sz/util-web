@@ -25,10 +25,12 @@ export const Base64: React.FC = () => {
   return (
     <section>
       <h2>Base64</h2>
-      <h3>Plaintext</h3>
-      <textarea value={plaintext} onChange={onChangePlaintext} />
-      <h3>Encoded</h3>
-      <textarea value={encoded} onChange={onChangeEncoded} />
+      <div>
+        <h3>Plaintext</h3>
+        <textarea value={plaintext} onChange={onChangePlaintext} />
+        <h3>Encoded</h3>
+        <textarea value={encoded} onChange={onChangeEncoded} />
+      </div>
     </section>
   );
 };

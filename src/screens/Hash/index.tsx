@@ -42,25 +42,27 @@ export const Hash: React.FC = () => {
   return (
     <section>
       <h2>Hash</h2>
-      <h3>Plaintext</h3>
-      <input value={plaintext} onChange={onChangePlaintext} />
-      <h3>Hashed</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Function</th>
-            <th>Output</th>
-          </tr>
-        </thead>
-        <tbody>
-          {functions.map(hashfn => (
-            <tr key={hashfn.name}>
-              <td>{hashfn.name}</td>
-              <td>{hashfn.fn(plaintext).toString()}</td>
+      <div>
+        <h3>Plaintext</h3>
+        <input value={plaintext} onChange={onChangePlaintext} />
+        <h3>Hashed</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Output</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {functions.map(hashfn => (
+              <tr key={hashfn.name}>
+                <td>{hashfn.name}</td>
+                <td>{hashfn.fn(plaintext).toString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 };

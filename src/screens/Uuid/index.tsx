@@ -15,12 +15,15 @@ export const Uuid: React.FC = () => {
 
   return (
     <section>
-      <h2>Your generated UUID v4:</h2>
-      <pre>{generated}</pre>
-      <CopyToClipboard text={generated} onCopy={onCopy}>
-        <button>{copied ? 'Copied' : 'Copy to clipboard'}</button>
-      </CopyToClipboard>
-      <button onClick={onNew}>New UUID</button>
+      <h2>UUID v4</h2>
+      <div>
+        <h3>Your generated UUID:</h3>
+        <pre>{generated}</pre>
+        <CopyToClipboard text={generated} onCopy={onCopy}>
+          <button>{copied ? 'Copied' : 'Copy to clipboard'}</button>
+        </CopyToClipboard>
+        <button onClick={onNew}>New UUID</button>
+      </div>
     </section>
   );
 };
