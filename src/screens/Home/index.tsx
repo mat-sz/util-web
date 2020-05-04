@@ -16,7 +16,11 @@ export const Home: React.FC = () => {
       </Link>
       <Link to="/hash">
         <h2>Hash</h2>
-        <span>MD5/SHA</span>
+        <span>MD5/SHA hashing.</span>
+      </Link>
+      <Link to="/photo">
+        <h2>Photo</h2>
+        <span>Image utilities, EXIF metadata viewer.</span>
       </Link>
     </section>
   );

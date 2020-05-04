@@ -8,6 +8,7 @@ import { Home } from './screens/Home';
 import { Uuid } from './screens/Uuid';
 import { Base64 } from './screens/Base64';
 import { Hash } from './screens/Hash';
+import { Photo } from './screens/Photo';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/hash">
             <Hash />
+          </Route>
+          <Route path="/photo">
+            <Photo />
           </Route>
           <Route path="/">
             <Home />
