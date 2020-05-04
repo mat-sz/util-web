@@ -40,7 +40,7 @@ export const Photo: React.FC = () => {
           </span>
         </div>
         <h3>Metadata</h3>
-        <div>
+        <div className="full-width">
           {file ? (
             tags ? (
               <table>
