@@ -1,23 +1,22 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ExifReader from 'exifreader';
+import { toDataURL, toArrayBuffer } from 'fitool';
 
 export const Photo: React.FC = () => {
   const [file, setFile] = useState<File>();
   const [tags, setTags] = useState<ExifReader.Tags>();
-
-  useEffect(() => {
-    console.log(tags);
-  }, [tags]);
+  const [url, setURL] = useState<string>();
 
   const onDrop = useCallback(
     async (files: File[]) => {
       if (files[0]) {
         setFile(files[0]);
-        setTags(ExifReader.load(await new Response(files[0]).arrayBuffer()));
+        setTags(ExifReader.load(await toArrayBuffer(files[0])));
+        setURL(await toDataURL(files[0]));
       }
     },
-    [setFile]
+    [setFile, setTags, setURL]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -39,6 +38,12 @@ export const Photo: React.FC = () => {
             Select your image file by clicking or dropping a file on this area.
           </span>
         </div>
+        {url ? (
+          <>
+            <h3>Preview</h3>
+            <img src={url} alt="Preview" />
+          </>
+        ) : null}
         <h3>Metadata</h3>
         <div className="full-width">
           {file ? (
