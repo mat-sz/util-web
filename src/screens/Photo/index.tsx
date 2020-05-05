@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ExifReader from 'exifreader';
+import { fromImage } from 'imtool';
 import { toDataURL, toArrayBuffer } from 'fitool';
 
 export const Photo: React.FC = () => {
@@ -18,6 +19,20 @@ export const Photo: React.FC = () => {
     },
     [setFile, setTags, setURL]
   );
+
+  const downloadJPEG = useCallback(async () => {
+    if (!file) return;
+
+    const tool = await fromImage(file);
+    tool.type('image/jpeg').toDownload('output.jpg');
+  }, [file]);
+
+  const downloadPNG = useCallback(async () => {
+    if (!file) return;
+
+    const tool = await fromImage(file);
+    tool.type('image/png').toDownload('output.png');
+  }, [file]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -42,6 +57,10 @@ export const Photo: React.FC = () => {
           <>
             <h3>Preview</h3>
             <img src={url} alt="Preview" />
+            <div>
+              <button onClick={downloadJPEG}>Download JPEG</button>
+              <button onClick={downloadPNG}>Download PNG</button>
+            </div>
           </>
         ) : null}
         <h3>Metadata</h3>
