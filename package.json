@@ -21,7 +21,7 @@
     "exifreader": "^3.11.0",
     "fitool": "^1.0.1",
     "husky": "^4.2.5",
-    "imtool": "^1.1.1",
+    "imtool": "^1.1.2",
     "lint-staged": "^10.2.2",
     "node-sass": "^4.14.0",
     "prettier": "^2.0.5",

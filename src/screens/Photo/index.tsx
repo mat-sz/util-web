@@ -2,37 +2,30 @@ import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ExifReader from 'exifreader';
 import { fromImage } from 'imtool';
-import { toDataURL, toArrayBuffer } from 'fitool';
+import { toArrayBuffer } from 'fitool';
 
 export const Photo: React.FC = () => {
   const [file, setFile] = useState<File>();
   const [tags, setTags] = useState<ExifReader.Tags>();
   const [url, setURL] = useState<string>();
+  const [jpegURL, setJpegURL] = useState<string>();
+  const [pngURL, setPngURL] = useState<string>();
 
   const onDrop = useCallback(
     async (files: File[]) => {
       if (files[0]) {
-        setFile(files[0]);
-        setTags(ExifReader.load(await toArrayBuffer(files[0])));
-        setURL(await toDataURL(files[0]));
+        const file = files[0];
+        setFile(file);
+        setTags(ExifReader.load(await toArrayBuffer(file)));
+        setURL(URL.createObjectURL(file));
+
+        const tool = await fromImage(file);
+        setJpegURL(await tool.type('image/jpeg').toBlobURL());
+        setPngURL(await tool.type('image/png').toBlobURL());
       }
     },
-    [setFile, setTags, setURL]
+    [setFile, setTags, setURL, setJpegURL, setPngURL]
   );
-
-  const downloadJPEG = useCallback(async () => {
-    if (!file) return;
-
-    const tool = await fromImage(file);
-    tool.type('image/jpeg').toDownload('output.jpg');
-  }, [file]);
-
-  const downloadPNG = useCallback(async () => {
-    if (!file) return;
-
-    const tool = await fromImage(file);
-    tool.type('image/png').toDownload('output.png');
-  }, [file]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -58,8 +51,12 @@ export const Photo: React.FC = () => {
             <h3>Preview</h3>
             <img src={url} alt="Preview" />
             <div>
-              <button onClick={downloadJPEG}>Download JPEG</button>
-              <button onClick={downloadPNG}>Download PNG</button>
+              <a className="button" href={jpegURL}>
+                Download JPEG
+              </a>
+              <a className="button" href={pngURL}>
+                Download PNG
+              </a>
             </div>
           </>
         ) : null}
