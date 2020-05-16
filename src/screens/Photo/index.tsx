@@ -30,6 +30,7 @@ export const Photo: React.FC = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: 'image/*',
+    multiple: false,
   });
 
   return (
